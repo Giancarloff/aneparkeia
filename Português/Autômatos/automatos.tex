@@ -1,0 +1,131 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref}
+
+% Macros
+\newcommand{\naturais}{\mathbb{N}}
+\newcommand{\set}[1]{\{#1\}}
+\newcommand{\ainf}{A^*}
+
+\title{Autômatos}
+\author{Gian Carlo}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Introdução}
+
+Este texto apresenta meus esforços de procurar uma definição simples, esqueletal, 
+e útil de autômatos. Não afirmo que tenha conseguido a utilidade, mas acho que
+consigo mostrar que a definição é simples e esqueletal, no sentido de capturar
+a essência dos autômatos. Para uma literatura séria, contemplando várias 
+contribuições, temos os livros de Eilenberg, de Hopcroft e de Jean Éric Pin.
+
+\section{Conteúdo}
+
+Para um $n \in \naturais$, definimos \begin{equation}
+    [n] = \set{1, 2, ..., n}.
+\end{equation}
+Com esta notação, podemos considerar um conjunto $A \neq \emptyset$ dado por \begin{equation}
+    A = \set{a_i : i \in [n]}
+\end{equation}
+que chamaremos de alfabeto. Por fim, obtemos um conjunto de \textbf{palavras} sobre $A$
+dado por \begin{equation}
+    \ainf = \set \varepsilon \cup \bigcup_{n \in \naturais} A^n
+\end{equation}
+onde $A^n = A \times A \times ... \times A$ (produto cartesiano $n$ vezes) 
+e $\varepsilon$ é a palavra vazia.
+
+Definindo uma operação sobre $\ainf$ dada por \begin{equation}
+    \begin{array}{cccc}
+        \_ : & \ainf \times \ainf & \to & \ainf \\
+        & (x, y) & \mapsto & xy
+    \end{array}
+\end{equation}
+obedecendo $x\varepsilon = \varepsilon x = x$ para todo $x \in \ainf$,
+obtemos um monóide livre $(\ainf, \_)$ sobre $A$. Deixemos este monóide quieto
+por enquanto.
+
+Um grupo denotado por $S_p$, para $p \in \naturais$, é o grupo de permutações sobre $[p]$. Se tratam de
+funções bijetoras de $[p]$ em $[p]$. A operação do grupo é a composição de funções.
+Definiremos nosso autômato como uma função \begin{equation}
+    \begin{array}{cccc}
+        \phi : & A & \to & S_p \\
+        & a & \mapsto & \sigma_a
+    \end{array}
+\end{equation}
+onde $\sigma_a$ é uma permutação de $S_p$. Afirmamos que $\phi$ carrega
+o esqueleto do que podemos chamar de \textbf{autômato finito determinístico} (AFD).
+Nesta definição, $[p]$ é o conjunto de estados do autômato.
+
+Não temos noção ainda de estado inicial. Para isto, iremos introduzir a seguinte notação.
+Sejam $x \in [p]$ e $a \in A$. Definimos \begin{equation}
+    \phi(x \mid a) = \sigma_a(x)
+\end{equation}
+obedecendo \begin{equation}
+    \phi(x \mid ab) = \phi(\phi(x \mid a) \mid b).
+\end{equation}
+Assim, $x$ cumpre o papel de um estado inicial. Ainda precisamos de estados finais.
+Neste caso, apenas exigiremos que $\emptyset \neq F \subseteq [p]$ dado seja um 
+conjunto de estados finais. Finalmente, podemos definir a linguagem de um autômato
+como \begin{equation}
+    L(\phi, x, F) = \set{w \in \ainf : \phi(x \mid w) \in F}.
+\end{equation}
+
+Note que capturamos o autômato em $\phi$, porém ao fazê-lo adicionamos dependências
+em $x$ e $F$ para a linguagem. A conexão com $S_p$ por $\phi$ imediatamente nos faz
+pensar em simetrias. Algumas perguntas próximas são: \begin{enumerate}
+    \item Se $\phi(A) \leq S_p$, há alguma simetria ou estrutura
+    que podemos explorar para entender melhor $L(\phi, x, F)$?
+    \item Que tipos de autômatos existem onde podemos variar $x$ e $F$ mas
+    não obtemos linguagens diferentes? Como caracterizar tais autômatos?
+    \item Existem ferramentas na álgebra para que possamos estudar melhor
+    como a estrutura do monóide livre $(\ainf, \_)$ relacionadas com
+    a estrutura do grupo $S_p$ influenciam a linguagem $L(\phi, x, F)$?
+\end{enumerate}
+
+Para não ficar apenas elaborando perguntas, temos um resultado imediato acerca (1).
+De fato, se $\phi(A) \leq S_p$ é um subgrupo de $S_p$, então podemos sabemos que
+existe $s \in A$ tal que $\phi(s) = id$. Assim, para todo $x \in [p]$ e
+$w \in \ainf$, temos \begin{equation}
+    \phi(x \mid sw) = \phi(\phi(x \mid s) \mid w) = \phi(x \mid w)
+\end{equation}
+e assim, $s$ se comporta como uma espécie de letra neutra, ou ``barulho''. Claro,
+isto afeta a linguagem, uma vez que se $uvw \in L(\phi, x, F)$, então 
+\begin{equation}
+    ssuvw, uvsswsss, susvsws, ... \in L(\phi, x, F).
+\end{equation}
+No geral, todo $x \in \ker \phi$ se comporta como barulho. Aqui surge uma questão:
+Há alguma forma de quocientar ou modular a linguagem para que possamos
+eliminar o barulho? No sentido de tratar $x \in \ker \phi$ como $\varepsilon$
+no monóide livre $(\ainf, \_)$. Em outras palavras, precisamos que 
+$\phi(A) \nleq S_p$ para que possamos extrair uma linguagem interessante?
+
+Acerca a questão (2), um caso trivial é onde temos $F = [p]$. Neste caso, temos
+$L = \ainf$ para todo $x \in [p]$. Um caso mais interessante é quando temos
+$F = \set{f}$ para algum $f \in [p]$. Neste caso, temos que $L(\phi, x, F) = \set{w \in \ainf : \phi(x \mid w) = f}$.   
+
+Por fim, não estaríamos completos se uma forma de comparar autômatos. Naturalmente,
+a forma categórica de se fazer isso é por meio de morfismos. Teríamos algo como
+uma função $\Delta : [p] \to [q]$ tal que \begin{equation}
+    \Delta(\phi(x \mid a)) = \psi(\Delta(x) \mid a),
+\end{equation}
+exceto eventualmente pela equação que usamos para definir $\Delta$. Não irei elaborar,
+mas me parece que esta fórmula para $\Delta$ é demasiada forte.
+
+\section{Conclusões Provisórias}
+
+Se, ou quando, eu retomar este trabalho, buscarei formatar melhor o texto, visando
+uma estrutura inspirada no estilo Bourbaki. Além disso, como escrevemos a linguagem
+como dependente, poderíamos buscar caracterizações de algumas formas, como fixando
+$x$, ou fixando apenas $L$ e $\phi$, e buscando calcular as demais variáveis.
+Finalmente, mais profundidade acerca de qual seria uma boa definição de morfismo
+se faz necessária.
+
+
+\end{document}
