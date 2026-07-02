@@ -5,6 +5,35 @@
 \usepackage{lmodern}
 \usepackage{amsmath,amssymb}
 \usepackage{hyperref}
+\usepackage{mathptmx}
+
+% CONFIGURAÇÃO DE TEOREMAS
+\usepackage[thmmarks]{ntheorem}
+
+\theoremstyle{plain}
+\theoremheaderfont{\normalfont\bfseries}
+\theorembodyfont{\normalfont}
+\theoremseparator{:}
+\theorempreskip{\topsep}
+\theorempostskip{\topsep}
+
+\theoremsymbol{\ensuremath{\bigcirc}}
+\newtheorem{definicao}{Definição}[section]
+
+\theoremsymbol{\ensuremath{\triangle}}
+\newtheorem{nota}[definicao]{Nota}
+
+\theoremsymbol{}
+\newtheorem{proposicao}[definicao]{Proposição}
+
+\theoremsymbol{\ensuremath{\square}}
+\newtheorem{proplivre}[definicao]{Proposição}
+
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\normalfont\bfseries}
+\theorembodyfont{\normalfont}
+\theoremsymbol{\ensuremath{\blacksquare}}
+\newtheorem{demonstracao}[definicao]{Demonstração}
 
 % Macros
 \newcommand{\naturais}{\mathbb{N}}
@@ -26,7 +55,7 @@ consigo mostrar que a definição é simples e esqueletal, no sentido de captura
 a essência dos autômatos. Para uma literatura séria, contemplando várias 
 contribuições, temos os livros de Eilenberg, de Hopcroft e de Jean Éric Pin.
 
-\section{Conteúdo}
+\section{Investigação}
 
 Para um $n \in \naturais$, definimos \begin{equation}
     [n] = \set{1, 2, ..., n}.
@@ -89,8 +118,7 @@ pensar em simetrias. Algumas perguntas próximas são: \begin{enumerate}
     a estrutura do grupo $S_p$ influenciam a linguagem $L(\phi, x, F)$?
 \end{enumerate}
 
-Para não ficar apenas elaborando perguntas, temos um resultado imediato acerca (1).
-De fato, se $\phi(A) \leq S_p$ é um subgrupo de $S_p$, então podemos sabemos que
+Para não ficar apenas elaborando perguntas, temos um resultado imediato acerca (1). De fato, se $\phi(A) \leq S_p$ é um subgrupo de $S_p$, então podemos sabemos que
 existe $s \in A$ tal que $\phi(s) = id$. Assim, para todo $x \in [p]$ e
 $w \in \ainf$, temos \begin{equation}
     \phi(x \mid sw) = \phi(\phi(x \mid s) \mid w) = \phi(x \mid w)
@@ -118,14 +146,119 @@ uma função $\Delta : [p] \to [q]$ tal que \begin{equation}
 exceto eventualmente pela equação que usamos para definir $\Delta$. Não irei elaborar,
 mas me parece que esta fórmula para $\Delta$ é demasiada forte.
 
+\section{Síntese}
+
+\begin{nota} \label{nota:notacao_intervalo_discreto}
+    Seja $n \in \naturais$. Denotaremos por $[n]$ o conjunto $\set{1, 2, ..., n}$.
+\end{nota}
+
+\begin{definicao}[Autômato] \label{def:automato}
+    Seja $s \in \naturais$, $A \neq \emptyset$ um conjunto, e $S_s$ o grupo de permutações sobre $[s]$. Um \textbf{autômato} é uma função \begin{equation}
+        \begin{array}{cccc}
+            \phi : & A & \to & S_s \\
+            & a & \mapsto & \sigma_a
+        \end{array}
+    \end{equation}
+    onde $\sigma_a$ é uma permutação de $S_s$. 
+\end{definicao}
+
+\begin{nota} \label{nota:notacao_estado_inicial}
+    Introduziremos mais algumas notações: \begin{enumerate}
+        \item Dados $x \in [s]$ e $a \in A$, faremos \begin{equation}
+            \phi(x \mid a) = \sigma_a(x)
+        \end{equation}
+        Note que $\phi(x \mid a) \in [s]$. Ou seja, podemos expandir a notação por meio de uma recursão.
+        \item Dado $x \in [s]$ e $a, b \in A$, faremos \begin{equation}
+            \phi(x \mid ab) = \phi(\phi(x \mid a) \mid b)
+        \end{equation}
+        Que de fato faz sentido, pois $\phi(x \mid a) \in [s]$ e assim podemos substituir o $x$ em $\phi(x \mid b)$.
+    \end{enumerate}
+\end{nota}
+
+\begin{proplivre} \label{prop:composicao_automato}
+    Seja $\phi$ um autômato, $x \in [s]$ e $a, b \in A$. Temos que \begin{equation}
+        \phi(x \mid ab) = (\phi(b) \circ \phi(a))(x).
+    \end{equation}
+\end{proplivre}
+
+\begin{nota}
+    Denotaremos por $\ker \phi$ o conjunto \begin{equation}
+        \ker \phi = \set{a \in A : \phi(a) = id}.
+    \end{equation}
+    E por $A \leq B$ o fato de que $A$ é um subgrupo de $B$.
+\end{nota}
+
+\begin{proposicao}[Autômato Subgrupo] \label{prop:automato_subgrupo}
+    Seja $\phi$ um autômato e $[s]$ seu conjunto de estados. Se $\phi(A) \leq S_s$, então valem: \begin{enumerate}
+        \item Para todo $n \in [s]$, existem $a, b \in A$ tais que $\phi(n | ab) = n$;
+        \item Para todo $a \in \ker \phi$ e $n \in [s]$, temos $\phi(n | a) = n$; e
+        \item Para todo $n \in [s]$ e $a, b \in A$, existe $c \in A$ tal que $\phi(n | ab) = \phi(n | c)$.
+    \end{enumerate}
+\end{proposicao}
+
+\begin{demonstracao}
+    Para (1), tome $a \in A$ e denote por $\sigma_a$ a permutação $\phi(a)$. Como $\phi(A) \leq S_s$, temos que $\sigma_a^{-1} \in \phi(A)$, ou seja, existe $b \in A$ tal que $\phi(b) = \sigma_a^{-1}$. Assim, para todo $n \in [s]$, temos \begin{equation}
+        \phi(n | ab) = (\phi(b) \circ \phi(a))(n) = (\sigma_a^{-1} \circ \sigma_a)(n) = n.
+    \end{equation}
+    
+    Para (2), seja $a \in \ker \phi$ e $n \in [s]$. Então $\phi(a) = id$, e assim \begin{equation}
+        \phi(n | a) = \phi(a)(n) = id(n) = n.
+    \end{equation}
+    
+    Para (3), tome $n \in [s]$ e $a, b \in A$. Denote por $\sigma_a$ e $\sigma_b$ as permutações $\phi(a)$ e $\phi(b)$, respectivamente. Como $\phi(A) \leq S_s$, temos que $\sigma_a \circ \sigma_b \in \phi(A)$, ou seja, existe $c \in A$ tal que $\phi(c) = \sigma_a \circ \sigma_b$. Assim, temos \begin{equation}
+        \phi(n | ab) = (\phi(b) \circ \phi(a))(n) = (\sigma_a \circ \sigma_b)(n) = \phi(c)(n) = \phi(n | c).
+    \end{equation}
+\end{demonstracao}
+
+\begin{nota}
+    Introduziremos terminologia para as propriedades da proposição anterior, respectivamente: \begin{enumerate}
+        \item Diremos que o autômato em questão sempre tem \textbf{transição inversível};
+        \item Todo $a \in \ker \phi$ é chamado de \textbf{barulho}; 
+        \item Diremos que o autômato é \textbf{transitivo}.
+    \end{enumerate}
+\end{nota}
+
+\begin{nota}
+    Seja $A$ um conjunto. Denotaremos por $A^p$ o produto cartesiano \begin{equation}
+        A \times A^{p-1}
+    \end{equation}
+    onde $A^1 = A$. Por extenso, temos que $A^p$ é o produto cartesiano de $p$ cópias de $A$: \begin{equation}
+        A^p = \underbrace{A \times A \times ... \times A}_{p}
+    \end{equation}
+\end{nota}
+
+\begin{definicao}[Conjunto de Palavras]
+    Seja $\phi : A \to [s]$ um autômato. Denotaremos por $\ainf$ o conjunto \begin{equation}
+        \ainf = \set \varepsilon \cup \bigcup_{p = 1}^{\infty} A^p
+    \end{equation}
+    que chamaremos de \textbf{palavras de $A$}. Neste contexto, $A$ será chamado de conjunto de \textbf{símbolos}. Aqui $\varepsilon$ representa uma \textbf{palavra vazia}, sem símbolos.
+\end{definicao}
+
+\begin{nota}
+    Se definimos uma operação de concatenação em $\ainf$, que denotaremos por $+$, e exigimos que \begin{equation}
+        p + \varepsilon = \varepsilon + p = p
+    \end{equation}
+    para todo $p \in \ainf$, obtemos o que na literatuara se chama de \textbf{monóide livre} sobre $A$, dado pela tupla $(\ainf, +)$.
+\end{nota}
+
+\begin{nota}
+    Sejam $\phi : A \to [s]$ um autômato, $i \in [s]$, e $p \in \ainf$. Escrevendo $p$ por extenso como \begin{equation}
+        p = (p_1, p_2, ..., p_k)
+    \end{equation}
+    extendemos nossa definição de $\phi(x | w)$ fazendo \begin{equation}
+        \phi(i | p) = \phi(i | p_1p_2...p_k).
+    \end{equation}
+\end{nota}
+
+\begin{definicao}[Linguagem] \label{def:linguagem}
+    Seja $\phi$ um autômato, $i \in [s]$ e $\emptyset \neq F \subseteq [s]$. A \textbf{linguagem} de $(\phi, i, F)$, que denotaremos por $L(\phi, i, F)$, é o conjunto \begin{equation}
+        L(\phi, i, F) = \set{p \in \ainf : \phi(i \mid p) \in F}.
+    \end{equation}
+\end{definicao}
+
 \section{Conclusões Provisórias}
 
-Se, ou quando, eu retomar este trabalho, buscarei formatar melhor o texto, visando
-uma estrutura inspirada no estilo Bourbaki. Além disso, como escrevemos a linguagem
-como dependente, poderíamos buscar caracterizações de algumas formas, como fixando
-$x$, ou fixando apenas $L$ e $\phi$, e buscando calcular as demais variáveis.
-Finalmente, mais profundidade acerca de qual seria uma boa definição de morfismo
-se faz necessária.
+A ideia no momento é ir alternando entre as investigações e a síntese. Não sei se irei modificar a parte da investigação para mencionar o que é explicitado na síntese, ou se deixo como foi escrito para fins de registro histórico. Claramente o estudo ainda está extremamente superficial, porém esta síntese inicial me animou um pouco.
 
 
 \end{document}
