@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1782957644.52976 "c:/Users/gianm/OneDrive/Desktop/aneparkeia/Português/Autômatos/automatos.tex" "automatos.pdf" "automatos" 1782957645.40301 0
+["pdflatex"] 1783231667.37823 "c:/Users/gianm/OneDrive/Desktop/aneparkeia/Português/Autômatos/automatos.tex" "automatos.pdf" "automatos" 1783231668.21327 0
   "C:/Users/gianm/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1782952091 122695 284aa43fd9596bfdbe93b5e0c6c5df4b ""
   "C:/Users/gianm/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs10.tfm" 1782951059 688 37338d6ab346c2f1466b29e195316aa4 ""
   "C:/Users/gianm/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1782244836 13367096 bad0ea374d6a8282fff837839da292b9 ""
@@ -30,6 +30,7 @@
   "C:/Users/gianm/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1247596667 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "C:/Users/gianm/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb" 1247596673 31764 459c573c03a4949a528c2cc7f557e217 ""
   "C:/Users/gianm/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1247596673 34694 870c211f62cb72718a00e353f14f254d ""
+  "C:/Users/gianm/AppData/Local/Programs/MiKTeX/fonts/type1/public/rsfs/rsfs10.pfb" 893413860 16077 4737ac34f0fb5608550f3780a0202c22 ""
   "C:/Users/gianm/AppData/Local/Programs/MiKTeX/fonts/type1/urw/symbol/usyr.pfb" 1136864148 33709 b09d2e140b7e807d3a97058263ab6693 ""
   "C:/Users/gianm/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb" 1136864148 44729 fea0975e20ec51c992338362f05f1146 ""
   "C:/Users/gianm/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb" 1136864148 46026 687528a208fbfc1f00832bb96cccebbb ""
@@ -93,10 +94,10 @@
   "C:/Users/gianm/AppData/Local/Programs/MiKTeX/tex/latex/refcount/refcount.sty" 1576433952 9878 9e94e8fa600d95f9c7731bb21dfb67a4 ""
   "C:/Users/gianm/AppData/Local/Programs/MiKTeX/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1751104012 9684 a33a14b82ce60d6e77cb9be689d79ee6 ""
   "C:/Users/gianm/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
-  "automatos.aux" 1782957645 2974 802864cf8c9f759472893d358e40f493 "pdflatex"
-  "automatos.out" 1782957645 451 c1f9dc6bdb39a30f97d36409b621e9d1 "pdflatex"
-  "automatos.tex" 1782957643 12288 78df6f55086631dfd0dfc70494e3085b ""
-  "c:/Users/gianm/OneDrive/Desktop/aneparkeia/Português/Autômatos/automatos.tex" 1782957643 12288 78df6f55086631dfd0dfc70494e3085b ""
+  "automatos.aux" 1783231668 2974 d39f51c5932cce3a0ab468a74a1790f4 "pdflatex"
+  "automatos.out" 1783231668 451 c1f9dc6bdb39a30f97d36409b621e9d1 "pdflatex"
+  "automatos.tex" 1783231666 11848 437b642a284cff0a965c1bc49403eb87 ""
+  "c:/Users/gianm/OneDrive/Desktop/aneparkeia/Português/Autômatos/automatos.tex" 1783231666 11848 437b642a284cff0a965c1bc49403eb87 ""
   (generated)
   "automatos.aux"
   "automatos.log"

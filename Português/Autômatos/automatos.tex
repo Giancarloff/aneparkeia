@@ -39,6 +39,8 @@
 \newcommand{\naturais}{\mathbb{N}}
 \newcommand{\set}[1]{\{#1\}}
 \newcommand{\ainf}{A^*}
+\newcommand{\funcset}[1]{#1^{#1}}
+\newcommand{\powerset}[1]{\mathcal{P}(#1)}
 
 \title{Autômatos}
 \author{Gian Carlo}
@@ -54,6 +56,8 @@ e útil de autômatos. Não afirmo que tenha conseguido a utilidade, mas acho qu
 consigo mostrar que a definição é simples e esqueletal, no sentido de capturar
 a essência dos autômatos. Para uma literatura séria, contemplando várias 
 contribuições, temos os livros de Eilenberg, de Hopcroft e de Jean Éric Pin.
+
+O estilo do texto é sem estilo. As vezes alterno a pessoa da linguagem, entre a primeira singular e plural. As vezes busco ser impessoal. 
 
 \section{Investigação}
 
@@ -80,21 +84,17 @@ obedecendo $x\varepsilon = \varepsilon x = x$ para todo $x \in \ainf$,
 obtemos um monóide livre $(\ainf, \_)$ sobre $A$. Deixemos este monóide quieto
 por enquanto.
 
-Um grupo denotado por $S_p$, para $p \in \naturais$, é o grupo de permutações sobre $[p]$. Se tratam de
-funções bijetoras de $[p]$ em $[p]$. A operação do grupo é a composição de funções.
-Definiremos nosso autômato como uma função \begin{equation}
+Denotaremos por $\funcset{[s]}$ o conjunto de todas as funções de $[s]$ em $[s]$. Nosso autômato será uma função \begin{equation}
     \begin{array}{cccc}
-        \phi : & A & \to & S_p \\
-        & a & \mapsto & \sigma_a
+        \phi : & A & \to & \funcset{[s]} \\
+         & a & \mapsto & f_a
     \end{array}
 \end{equation}
-onde $\sigma_a$ é uma permutação de $S_p$. Afirmamos que $\phi$ carrega
-o esqueleto do que podemos chamar de \textbf{autômato finito determinístico} (AFD).
-Nesta definição, $[p]$ é o conjunto de estados do autômato.
+sem maiores restrições. Esta definição não é novidade, já estando presente na literatura.
 
 Não temos noção ainda de estado inicial. Para isto, iremos introduzir a seguinte notação.
 Sejam $x \in [p]$ e $a \in A$. Definimos \begin{equation}
-    \phi(x \mid a) = \sigma_a(x)
+    \phi(x \mid a) = f_a(x)
 \end{equation}
 obedecendo \begin{equation}
     \phi(x \mid ab) = \phi(\phi(x \mid a) \mid b).
@@ -106,45 +106,22 @@ como \begin{equation}
     L(\phi, x, F) = \set{w \in \ainf : \phi(x \mid w) \in F}.
 \end{equation}
 
-Note que capturamos o autômato em $\phi$, porém ao fazê-lo adicionamos dependências
-em $x$ e $F$ para a linguagem. A conexão com $S_p$ por $\phi$ imediatamente nos faz
-pensar em simetrias. Algumas perguntas próximas são: \begin{enumerate}
-    \item Se $\phi(A) \leq S_p$, há alguma simetria ou estrutura
-    que podemos explorar para entender melhor $L(\phi, x, F)$?
-    \item Que tipos de autômatos existem onde podemos variar $x$ e $F$ mas
-    não obtemos linguagens diferentes? Como caracterizar tais autômatos?
-    \item Existem ferramentas na álgebra para que possamos estudar melhor
-    como a estrutura do monóide livre $(\ainf, \_)$ relacionadas com
-    a estrutura do grupo $S_p$ influenciam a linguagem $L(\phi, x, F)$?
-\end{enumerate}
+Estando diante de uma definição de autômato e linguagem, podemos fazer perguntas mais interessantes. Primeiro, uma vez carregada as dependências de estados inicial e finais para a linguagem, agora podemos pensar em formas de descrever autômatos ou estruturas tais que, variando ou fixando estas dependências, obtemos resultados iguais ou diferentes.
 
-Para não ficar apenas elaborando perguntas, temos um resultado imediato acerca (1). De fato, se $\phi(A) \leq S_p$ é um subgrupo de $S_p$, então podemos sabemos que
-existe $s \in A$ tal que $\phi(s) = id$. Assim, para todo $x \in [p]$ e
-$w \in \ainf$, temos \begin{equation}
-    \phi(x \mid sw) = \phi(\phi(x \mid s) \mid w) = \phi(x \mid w)
+Por exemplo, poderíamos nos perguntar o que acontece se fixarmos os estados finais e variamos o estado inicial do autômato. Numa equação, estaríamos estudando o comportamento de uma função $v$ no conjunto das partes de $\ainf$ ($\powerset{\ainf}$) dada por \begin{equation}
+    \begin{array}{cccc}
+        v : & [s] & \to & \powerset{\ainf} \\
+         & n & \mapsto & L(\phi, n, F)
+    \end{array}
 \end{equation}
-e assim, $s$ se comporta como uma espécie de letra neutra, ou ``barulho''. Claro,
-isto afeta a linguagem, uma vez que se $uvw \in L(\phi, x, F)$, então 
-\begin{equation}
-    ssuvw, uvsswsss, susvsws, ... \in L(\phi, x, F).
-\end{equation}
-No geral, todo $x \in \ker \phi$ se comporta como barulho. Aqui surge uma questão:
-Há alguma forma de quocientar ou modular a linguagem para que possamos
-eliminar o barulho? No sentido de tratar $x \in \ker \phi$ como $\varepsilon$
-no monóide livre $(\ainf, \_)$. Em outras palavras, precisamos que 
-$\phi(A) \nleq S_p$ para que possamos extrair uma linguagem interessante?
+fixando $\phi$ e $F$. Há autômatos cujo o comportamento da linguagem, sobre esta ótica, é previsível? Claramente, quando $n \in F$, teremos $\varepsilon \in L(\phi, n, F)$. Mas e as demais palavras? Que tipos de simetrias e assimetrias entram em jogo?
 
-Acerca a questão (2), um caso trivial é onde temos $F = [p]$. Neste caso, temos
-$L = \ainf$ para todo $x \in [p]$. Um caso mais interessante é quando temos
-$F = \set{f}$ para algum $f \in [p]$. Neste caso, temos que $L(\phi, x, F) = \set{w \in \ainf : \phi(x \mid w) = f}$.   
+Como $\ainf$ é enumerável, temos $\powerset{\ainf}$ não-enumerável. De imediato pensamos em números reais ou complexos. Não é novidade que estruturas nestes espaços elucidem propriedades para fenômenos discretos, então há aí também mais uma superfície de estudo?
 
-Por fim, não estaríamos completos se uma forma de comparar autômatos. Naturalmente,
-a forma categórica de se fazer isso é por meio de morfismos. Teríamos algo como
-uma função $\Delta : [p] \to [q]$ tal que \begin{equation}
-    \Delta(\phi(x \mid a)) = \psi(\Delta(x) \mid a),
+Uma questão inicial bem simples de se fazer seria: Se sabemos que variando $n \in [s]$, todas as nossas linguagens são translações uma das outras por palavras fixas, conseguimos determinar algo sobre $F$ e $\phi$? Se $s = 3$, por exemplo, e digamos que \begin{equation}
+    L(\phi, 1, F) = aL(\phi, 2, F) = bL(\phi, 3, F),
 \end{equation}
-exceto eventualmente pela equação que usamos para definir $\Delta$. Não irei elaborar,
-mas me parece que esta fórmula para $\Delta$ é demasiada forte.
+onde $xL(\phi, n, F) = \set { xp : p \in L(\phi, n, F)}$, o que isso determina de $\phi$ e $F$? Com este exemplo pequeno, seríamos capazes de reconstruir parte de $\phi$ e $F$ relativos à equação por inspeção e estudo de casos, mas e num caso geral?
 
 \section{Síntese}
 
@@ -153,19 +130,19 @@ mas me parece que esta fórmula para $\Delta$ é demasiada forte.
 \end{nota}
 
 \begin{definicao}[Autômato] \label{def:automato}
-    Seja $s \in \naturais$, $A \neq \emptyset$ um conjunto, e $S_s$ o grupo de permutações sobre $[s]$. Um \textbf{autômato} é uma função \begin{equation}
+    Seja $s \in \naturais$ e $A \neq \emptyset$ um conjunto. Um \textbf{autômato} é uma função \begin{equation}
         \begin{array}{cccc}
-            \phi : & A & \to & S_s \\
-            & a & \mapsto & \sigma_a
+            \phi : & A & \to & \funcset{[s]} \\
+            & a & \mapsto & f_a
         \end{array}
     \end{equation}
-    onde $\sigma_a$ é uma permutação de $S_s$. 
+    onde $f_a$ é uma função $[s] \to [s]$.
 \end{definicao}
 
 \begin{nota} \label{nota:notacao_estado_inicial}
     Introduziremos mais algumas notações: \begin{enumerate}
         \item Dados $x \in [s]$ e $a \in A$, faremos \begin{equation}
-            \phi(x \mid a) = \sigma_a(x)
+            \phi(x \mid a) = f_a(x)
         \end{equation}
         Note que $\phi(x \mid a) \in [s]$. Ou seja, podemos expandir a notação por meio de uma recursão.
         \item Dado $x \in [s]$ e $a, b \in A$, faremos \begin{equation}
@@ -183,9 +160,9 @@ mas me parece que esta fórmula para $\Delta$ é demasiada forte.
 
 \begin{nota}
     Denotaremos por $\ker \phi$ o conjunto \begin{equation}
-        \ker \phi = \set{a \in A : \phi(a) = id}.
+        \ker \phi = \set{a \in A : \phi(a) = id},
     \end{equation}
-    E por $A \leq B$ o fato de que $A$ é um subgrupo de $B$.
+    por $A \leq B$ o fato de que $A$ é um subgrupo de $B$, e por $S_s$ o grupo de permutações (funções bijetoras) de $[s] \to [s]$. Imediatamente temos que $S_s \subseteq \funcset{[s]}$.
 \end{nota}
 
 \begin{proposicao}[Autômato Subgrupo] \label{prop:automato_subgrupo}
@@ -228,7 +205,7 @@ mas me parece que esta fórmula para $\Delta$ é demasiada forte.
 \end{nota}
 
 \begin{definicao}[Conjunto de Palavras]
-    Seja $\phi : A \to [s]$ um autômato. Denotaremos por $\ainf$ o conjunto \begin{equation}
+    Denotaremos por $\ainf$ o conjunto \begin{equation}
         \ainf = \set \varepsilon \cup \bigcup_{p = 1}^{\infty} A^p
     \end{equation}
     que chamaremos de \textbf{palavras de $A$}. Neste contexto, $A$ será chamado de conjunto de \textbf{símbolos}. Aqui $\varepsilon$ representa uma \textbf{palavra vazia}, sem símbolos.
@@ -242,10 +219,10 @@ mas me parece que esta fórmula para $\Delta$ é demasiada forte.
 \end{nota}
 
 \begin{nota}
-    Sejam $\phi : A \to [s]$ um autômato, $i \in [s]$, e $p \in \ainf$. Escrevendo $p$ por extenso como \begin{equation}
+    Sejam $\phi : A \to \funcset{[s]}$ um autômato, $i \in [s]$, e $p \in \ainf$. Escrevendo $p$ por extenso como \begin{equation}
         p = (p_1, p_2, ..., p_k)
     \end{equation}
-    extendemos nossa definição de $\phi(x | w)$ fazendo \begin{equation}
+    extendemos nossa definição de $\phi(x | y)$ fazendo \begin{equation}
         \phi(i | p) = \phi(i | p_1p_2...p_k).
     \end{equation}
 \end{nota}
@@ -258,7 +235,8 @@ mas me parece que esta fórmula para $\Delta$ é demasiada forte.
 
 \section{Conclusões Provisórias}
 
-A ideia no momento é ir alternando entre as investigações e a síntese. Não sei se irei modificar a parte da investigação para mencionar o que é explicitado na síntese, ou se deixo como foi escrito para fins de registro histórico. Claramente o estudo ainda está extremamente superficial, porém esta síntese inicial me animou um pouco.
+A ideia no momento é ir alternando entre as investigações e a síntese. Não sei se irei modificar a parte da investigação para mencionar o que é explicitado na síntese, ou se deixo como foi escrito para fins de registro histórico. Claramente o estudo ainda está extremamente superficial.
 
+Estou ciente de que nada aqui é novidade. Este tipo de trabalho serve como motivação para mim mesmo. Sinto que aprendo desta forma, buscando eu mesmo trilhar estes caminhos.
 
 \end{document}
