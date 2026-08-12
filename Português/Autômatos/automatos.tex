@@ -35,12 +35,15 @@
 \theoremsymbol{\ensuremath{\blacksquare}}
 \newtheorem{demonstracao}[definicao]{Demonstração}
 
-% Macros
+% Macros Gerais
 \newcommand{\naturais}{\mathbb{N}}
 \newcommand{\set}[1]{\{#1\}}
+
+% Macros Específicos
 \newcommand{\ainf}{A^*}
 \newcommand{\funcset}[1]{#1^{#1}}
 \newcommand{\powerset}[1]{\mathcal{P}(#1)}
+\newcommand{\automataAs}[1]{#1 : A \to \funcset{[s]}}
 
 \title{Autômatos}
 \author{Gian Carlo}
@@ -90,7 +93,7 @@ Denotaremos por $\funcset{[s]}$ o conjunto de todas as funções de $[s]$ em $[s
          & a & \mapsto & f_a
     \end{array}
 \end{equation}
-sem maiores restrições. Esta definição não é novidade, já estando presente na literatura.
+sem maiores restrições.
 
 Não temos noção ainda de estado inicial. Para isto, iremos introduzir a seguinte notação.
 Sejam $x \in [p]$ e $a \in A$. Definimos \begin{equation}
@@ -119,7 +122,7 @@ fixando $\phi$ e $F$. Há autômatos cujo o comportamento da linguagem, sobre es
 Como $\ainf$ é enumerável, temos $\powerset{\ainf}$ não-enumerável. De imediato pensamos em números reais ou complexos. Não é novidade que estruturas nestes espaços elucidem propriedades para fenômenos discretos, então há aí também mais uma superfície de estudo?
 
 Uma questão inicial bem simples de se fazer seria: Se sabemos que variando $n \in [s]$, todas as nossas linguagens são translações uma das outras por palavras fixas, conseguimos determinar algo sobre $F$ e $\phi$? Se $s = 3$, por exemplo, e digamos que \begin{equation}
-    L(\phi, 1, F) = aL(\phi, 2, F) = bL(\phi, 3, F),
+    L(\phi, 1, F) = aL(\phi, 2, F) = abL(\phi, 3, F),
 \end{equation}
 onde $xL(\phi, n, F) = \set { xp : p \in L(\phi, n, F)}$, o que isso determina de $\phi$ e $F$? Com este exemplo pequeno, seríamos capazes de reconstruir parte de $\phi$ e $F$ relativos à equação por inspeção e estudo de casos, mas e num caso geral?
 
@@ -153,47 +156,10 @@ onde $xL(\phi, n, F) = \set { xp : p \in L(\phi, n, F)}$, o que isso determina d
 \end{nota}
 
 \begin{proplivre} \label{prop:composicao_automato}
-    Seja $\phi$ um autômato, $x \in [s]$ e $a, b \in A$. Temos que \begin{equation}
+    Seja $\automataAs{\phi}$ um autômato, $x \in [s]$ e $a, b \in A$. Temos que \begin{equation}
         \phi(x \mid ab) = (\phi(b) \circ \phi(a))(x).
     \end{equation}
 \end{proplivre}
-
-\begin{nota}
-    Denotaremos por $\ker \phi$ o conjunto \begin{equation}
-        \ker \phi = \set{a \in A : \phi(a) = id},
-    \end{equation}
-    por $A \leq B$ o fato de que $A$ é um subgrupo de $B$, e por $S_s$ o grupo de permutações (funções bijetoras) de $[s] \to [s]$. Imediatamente temos que $S_s \subseteq \funcset{[s]}$.
-\end{nota}
-
-\begin{proposicao}[Autômato Subgrupo] \label{prop:automato_subgrupo}
-    Seja $\phi$ um autômato e $[s]$ seu conjunto de estados. Se $\phi(A) \leq S_s$, então valem: \begin{enumerate}
-        \item Para todo $n \in [s]$, existem $a, b \in A$ tais que $\phi(n | ab) = n$;
-        \item Para todo $a \in \ker \phi$ e $n \in [s]$, temos $\phi(n | a) = n$; e
-        \item Para todo $n \in [s]$ e $a, b \in A$, existe $c \in A$ tal que $\phi(n | ab) = \phi(n | c)$.
-    \end{enumerate}
-\end{proposicao}
-
-\begin{demonstracao}
-    Para (1), tome $a \in A$ e denote por $\sigma_a$ a permutação $\phi(a)$. Como $\phi(A) \leq S_s$, temos que $\sigma_a^{-1} \in \phi(A)$, ou seja, existe $b \in A$ tal que $\phi(b) = \sigma_a^{-1}$. Assim, para todo $n \in [s]$, temos \begin{equation}
-        \phi(n | ab) = (\phi(b) \circ \phi(a))(n) = (\sigma_a^{-1} \circ \sigma_a)(n) = n.
-    \end{equation}
-    
-    Para (2), seja $a \in \ker \phi$ e $n \in [s]$. Então $\phi(a) = id$, e assim \begin{equation}
-        \phi(n | a) = \phi(a)(n) = id(n) = n.
-    \end{equation}
-    
-    Para (3), tome $n \in [s]$ e $a, b \in A$. Denote por $\sigma_a$ e $\sigma_b$ as permutações $\phi(a)$ e $\phi(b)$, respectivamente. Como $\phi(A) \leq S_s$, temos que $\sigma_a \circ \sigma_b \in \phi(A)$, ou seja, existe $c \in A$ tal que $\phi(c) = \sigma_a \circ \sigma_b$. Assim, temos \begin{equation}
-        \phi(n | ab) = (\phi(b) \circ \phi(a))(n) = (\sigma_a \circ \sigma_b)(n) = \phi(c)(n) = \phi(n | c).
-    \end{equation}
-\end{demonstracao}
-
-\begin{nota}
-    Introduziremos terminologia para as propriedades da proposição anterior, respectivamente: \begin{enumerate}
-        \item Diremos que o autômato em questão sempre tem \textbf{transição inversível};
-        \item Todo $a \in \ker \phi$ é chamado de \textbf{barulho}; 
-        \item Diremos que o autômato é \textbf{transitivo}.
-    \end{enumerate}
-\end{nota}
 
 \begin{nota}
     Seja $A$ um conjunto. Denotaremos por $A^p$ o produto cartesiano \begin{equation}
@@ -219,12 +185,49 @@ onde $xL(\phi, n, F) = \set { xp : p \in L(\phi, n, F)}$, o que isso determina d
 \end{nota}
 
 \begin{nota}
-    Sejam $\phi : A \to \funcset{[s]}$ um autômato, $i \in [s]$, e $p \in \ainf$. Escrevendo $p$ por extenso como \begin{equation}
+    Sejam $\automataAs{\phi}$ um autômato, $i \in [s]$, e $p \in \ainf$. Escrevendo $p$ por extenso como \begin{equation}
         p = (p_1, p_2, ..., p_k)
     \end{equation}
     extendemos nossa definição de $\phi(x | y)$ fazendo \begin{equation}
         \phi(i | p) = \phi(i | p_1p_2...p_k).
     \end{equation}
+\end{nota}
+
+\begin{nota}
+    Denotaremos por $\ker \phi$ o conjunto \begin{equation}
+        \ker \phi = \set{a \in A : \phi(a) = id},
+    \end{equation}
+    por $A \leq B$ o fato de que $A$ é um subgrupo de $B$, e por $P_s$ o grupo de permutações (funções bijetoras) de $[s] \to [s]$. Imediatamente temos que $P_s \subseteq \funcset{[s]}$.
+\end{nota}
+
+\begin{proposicao}[Autômato Subgrupo] \label{prop:automato_subgrupo}
+    Seja $\automataAs{\phi}$ um autômato e $P_s$ o grupo de permutação sobre $[s]$. Se $\phi(A) \leq P_s$, então valem: \begin{enumerate}
+        \item Para todo $n \in [s]$, existem $a, b \in A$ tais que $\phi(n | ab) = n$;
+        \item Para todo $a \in \ker \phi$ e $n \in [s]$, temos $\phi(n | a) = n$; e
+        \item Para todo $n \in [s]$ e $a, b \in A$, existe $c \in A$ tal que $\phi(n | ab) = \phi(n | c)$.
+    \end{enumerate}
+\end{proposicao}
+
+\begin{demonstracao}
+    Para (1), tome $a \in A$ e denote por $\sigma_a$ a permutação $\phi(a)$. Como $\phi(A) \leq P_s$, temos que $\sigma_a^{-1} \in \phi(A)$, ou seja, existe $b \in A$ tal que $\phi(b) = \sigma_a^{-1}$. Assim, para todo $n \in [s]$, temos \begin{equation}
+        \phi(n | ab) = (\phi(b) \circ \phi(a))(n) = (\sigma_a^{-1} \circ \sigma_a)(n) = n.
+    \end{equation}
+    
+    Para (2), seja $a \in \ker \phi$ e $n \in [s]$. Então $\phi(a) = id$, e assim \begin{equation}
+        \phi(n | a) = \phi(a)(n) = id(n) = n.
+    \end{equation}
+    
+    Para (3), tome $n \in [s]$ e $a, b \in A$. Denote por $\sigma_a$ e $\sigma_b$ as permutações $\phi(a)$ e $\phi(b)$, respectivamente. Como $\phi(A) \leq P_s$, temos que $\sigma_a \circ \sigma_b \in \phi(A)$, ou seja, existe $c \in A$ tal que $\phi(c) = \sigma_a \circ \sigma_b$. Assim, temos \begin{equation}
+        \phi(n | ab) = (\phi(b) \circ \phi(a))(n) = (\sigma_a \circ \sigma_b)(n) = \phi(c)(n) = \phi(n | c).
+    \end{equation}
+\end{demonstracao}
+
+\begin{nota}
+    Introduziremos terminologia para as propriedades da proposição anterior, respectivamente: \begin{enumerate}
+        \item Diremos que o autômato em questão sempre tem \textbf{transição inversível};
+        \item Todo $a \in \ker \phi$ é chamado de \textbf{barulho}; 
+        \item Diremos que o autômato é \textbf{transitivo}.
+    \end{enumerate}
 \end{nota}
 
 \begin{definicao}[Linguagem] \label{def:linguagem}
@@ -233,10 +236,34 @@ onde $xL(\phi, n, F) = \set { xp : p \in L(\phi, n, F)}$, o que isso determina d
     \end{equation}
 \end{definicao}
 
-\section{Conclusões Provisórias}
+\begin{nota}
+    Seja $\automataAs{\phi}$ um autômato e $L(\phi, n, F)$ uma linguagem. Para toda $p \in \ainf$, denotaremos por $pL(\phi, n, F)$ o conjunto \begin{equation}
+        pL(\phi, n, F) = \set { p + q : q \in L(\phi, n, F)},
+    \end{equation}
+    onde $+$ é a concatenação no monóide livre sobre $A$. Em particular, se $p = a \in A$, concatenamos apenas uma letra, prefixando toda palavra da linguagem $L(\phi, n, F)$ por $a$.
+\end{nota}
+
+% \begin{proposicao}
+%     Seja $\automataAs{\phi}$ um autômato e $F = {k}$. Se existe $a \in A$ tal que, para todo $i, j \in [s]$ com $i \neq j$ tivermos \begin{equation}
+%         \emptyset \neq L(\phi, j, F) = aL(\phi, i, F) \neq \emptyset,
+%     \end{equation}
+%     então \begin{equation}
+%         \phi(i | a) = j.
+%     \end{equation}
+% \end{proposicao}
+
+% \begin{demonstracao}
+%     Tome $p \in L(\phi, j, F)$. Temos que \begin{equation}
+%         \phi(j | p) = k
+%     \end{equation}
+%     e que $ap \in L(\phi, i, F)$. Por definição, \begin{equation}
+%         \phi(i | ap) = \phi(\phi(i | a) | p) = k.
+%     \end{equation}
+%     Disso, $\phi(j | p) = \phi(\phi(i | a) | p)$ e portanto $\phi(i | a) = j$.
+% \end{demonstracao}
+
+\section{Comentários, Notas, e Conclusões}
 
 A ideia no momento é ir alternando entre as investigações e a síntese. Não sei se irei modificar a parte da investigação para mencionar o que é explicitado na síntese, ou se deixo como foi escrito para fins de registro histórico. Claramente o estudo ainda está extremamente superficial.
-
-Estou ciente de que nada aqui é novidade. Este tipo de trabalho serve como motivação para mim mesmo. Sinto que aprendo desta forma, buscando eu mesmo trilhar estes caminhos.
 
 \end{document}

@@ -1,0 +1,160 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref}
+\usepackage{mathptmx}
+
+% THEOREM CONFIGS (ENGLISH)
+\usepackage[thmmarks]{ntheorem}
+
+\theoremstyle{plain}
+\theoremheaderfont{\normalfont\bfseries}
+\theorembodyfont{\normalfont}
+\theoremseparator{:}
+\theorempreskip{\topsep}
+\theorempostskip{\topsep}
+
+\theoremsymbol{\ensuremath{\bigcirc}}
+\theorembodyfont{\normalfont}
+\newtheorem{definition}{Definition}[section]
+
+\theoremsymbol{\ensuremath{\triangle}}
+\theorembodyfont{\normalfont}
+\newtheorem{note}[definition]{Note}
+
+\theoremsymbol{}
+\theorembodyfont{\normalfont}
+\newtheorem{proposition}[definition]{Proposition}
+
+\theoremsymbol{\ensuremath{\square}}
+\theorembodyfont{\normalfont}
+\newtheorem{freeprop}[definition]{Proposition}
+
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\normalfont\bfseries}
+\theorembodyfont{\normalfont}
+\theoremsymbol{\ensuremath{\blacksquare}}
+\newtheorem{proof}[definition]{Proof}
+
+% Generic Macros (english)
+\newcommand{\naturals}{\mathbb{N}}
+\newcommand{\integers}{\mathbb{Z}}
+\newcommand{\rationals}{\mathbb{Q}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\complexs}{\mathbb{C}}
+\newcommand{\set}[1]{\{#1\}}
+
+
+
+\title{Endomorphisms}
+\author{Gian Carlo}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+% Specific macros
+\newcommand{\ot}{\leftarrow}
+\newcommand{\inv}[1]{#1^{-1}}
+
+\section{Introduction}
+
+Treating the algebraic structure of an endomorphism set on some finite set $S$ as a monoid seems rather boring to me. As with the portuguese texts, this will make mixed use of the language persons.
+
+\section{Investigation}
+
+Let $S$ be a finite set. The endomorphism set on $S$ is the set of all functions $S \to S$. I will denote this endomorphism set by $E_S$. 
+
+Among the elements of $E_S$ are the bijective functions. Those form a known group named the permutation group of $S$. I will denote this group by $P_S$. Let $n = |S|$. There are $n!$ such bijections. That leaves us $n^n - n!$ elements to structurize.
+
+Another set of elements of $E_S$ are functions of the form $f(x) = s_0$ for a given $s_0$ in $S$. Since there are $n$ options for such $s_0$, there are $n$ functions of this type. Let us define an operation $\cdot$ on $E_S$ given by \begin{equation}
+    f \cdot g = g \circ f.
+\end{equation}
+This is so we can read products left-to-right like usual. For the elements of the form $f(x) = s_0$, lets call them $R_S$. For every $r \in R_S$ and any product $P = f_1f_2...f_p$ of $f_i \in E_s$ we have \begin{equation}
+    Pr = r.
+\end{equation}
+That is because $r(x) = s_0$ for whatever input and as such it does not matter what is done to the input beforehand, so long as it remains in $S$. In particular, every $r \in R_S$, when placed at the end of a product, behaves like $0$ does for usual multiplication. Since the end of the product is at the rightmost symbol, we name these elements the righmost zeroes, or just $R_S$.
+
+We will denote the identity function by $e(x) = x$ or just $e$. So $eP = Pe = e$ for any product $P$ as before. Since each $r \in R_S$ has only one image, we will instead denote it by $r_0 \in S$.
+
+Take $r \in R_S$. If we consider the equation \begin{equation}
+    rx = e
+\end{equation}
+we could apply some input $s$ to both sides and get \begin{equation}
+    x(r(s)) = e(s)
+\end{equation}
+and since $r(s) = r_0$, we get $x(r_0) = e(s) = s$. Thus $x(r_0)$ has to be any element of $S$. This is a relation on $S$. We will look at a specific type of relation. 
+
+Let $t \subseteq S \times C$ be a relation on $S$. We will call $t$ a \textbf{branching} iff \begin{enumerate}
+    \item For all $c \in C$ there is $s \in S$ such that $(s, c) \in t$; And
+    \item if $(s, c) \in t$ and $(z, c) \in t$ then $s = z$.
+\end{enumerate}
+
+We shall denote $(s, c) \in t$ by $c(t) = s$. This looks well defined, though I will not rigorously check. With branchings, we can complete $R_S$. In particular, the branching given by $r_0(t) = s, \forall s \in S$ tells us that $rt = e$. So now every $r \in R_S$ has an inverse branching, if we assume composition is done as expected. 
+
+It seems we can even complete $E_S$ as a group with branchings. Let us see. We need no inverses for $e$ and elements of $P_S$. So let $f \in E_S$ be a function not equal to these. Have any $s \in S$ and consider \begin{equation}
+    f^{-1}(s) = \set {x \in S : f(x) = s}.
+\end{equation}
+Clearly the branching given by \begin{equation}
+    s(t_f) = x, \forall x \in f^{-1}(s)
+\end{equation}
+gives us an inverse to $f$. For confirmation, if $f(x) = y$, then $y(t_f) = x$ and as such $ft(x) = (f(x))(t_f) = y(t_f) = x = e(x)$.
+
+Another thing we can do is consider near-inverses. Say we take $f \in E_S$ such that $f(x) = s_0 \in S$. We can not invert this with another function. But we can invert it for every $x \in S$. Let $z \in S$. The inverse of $f(z) = s_0$ is given by $g(s_0) = z$. We can always find such a function $g \in S$. What we lose is uniqueness of inverse. For simplicity, lets restrict this even more by forcing $g$ to behave as $e$ everywhere else but $s_0$.
+
+
+\section{Synthesis}
+
+\begin{definition}[Branching]
+    Let $A$ and $B$ be two non empty sets. A relation $R \subseteq A \times B$ obeying: \begin{enumerate}
+        \item For all $b \in B$ there is an $a \in A$ such that $(a, b) \in R$; and
+        \item For all $a, e \in A$ and $b \in B$, if $(a, b) \in R$ and $(e, b) \in R$ then $a = e$;
+    \end{enumerate}
+    will be called a \textbf{branching} of $A$ to $B$.
+\end{definition}
+
+\begin{note}
+    We will write $(a, b) \in R$ as $b | R = a$. This can be read as $b$ come from $a$ by $R$. The second condition for branching tells us this notation is well defined.
+
+    We will also write a branching $R \subseteq A \times B$ as $R : B \ot A$. One way to read this is: by $R$, what is in $B$ comes from $A$.
+\end{note}
+
+\begin{definition}[Composition of Branchings]
+    Let $A$, $B$ and $C$ be three non empty sets. If there are branchings $R, S$ such that $R : B \ot A$ and $S : C \ot B$, then the \textbf{composition} of $R$ and $S$, denoted by $RS$, is given by the equation \begin{equation}
+        x | RS = (x | S) | R
+    \end{equation}
+    for all $x \in C$.
+\end{definition}
+
+\begin{definition}
+    Let $E_S$ be the set of functions of $S \to S$, and let $f \in E_S$ be a constant function $f(x) = s_0 \in S$ for all $x \in S$. A function $r$ is a \textbf{right near inverse} of $f$ if there exists $z \in S$ such that \begin{equation}
+        \begin{cases}
+            r(x) = s_0, & x = z \\
+            r(x) = x, & x \neq z
+        \end{cases}
+    \end{equation}
+    for all $x \in S$.
+\end{definition}
+
+\begin{proposition}
+    Let $S$ be a non-empty set of known cardinality $C$, and $E_S$ the set of function of $S \to S$. If $f \in E_S$ then there exists exactly $C$ right near inverses of $f$.
+\end{proposition}
+
+\begin{proof}
+    Consider the set given by \begin{equation}
+        f-r = \set {r \in E_S : \text{r is right near inverse of $f$}}.
+    \end{equation}
+    We will show that $f-r$ is in bijection with $S$. Consider the function $B : S \to f-r$ given by \begin{equation}
+        B(s) = 
+    \end{equation}
+    $s = fr \implies s\inv r = f$. 
+\end{proof}
+
+\section{Conclusions}
+
+How does one conclude something that is ongoing if not by ending it abrupte
+
+\end{document}

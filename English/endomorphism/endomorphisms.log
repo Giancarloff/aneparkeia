@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.6.23)  3 AUG 2026 01:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.6.23)  9 JUL 2026 08:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/gianm/OneDrive/Desktop/aneparkeia/Português/Autômatos/automatos.tex
-(c:/Users/gianm/OneDrive/Desktop/aneparkeia/Português/Autômatos/automatos.tex
+**c:/Users/gianm/OneDrive/Desktop/aneparkeia/English/endomorphism/endomorphisms.tex
+(c:/Users/gianm/OneDrive/Desktop/aneparkeia/English/endomorphism/endomorphisms.tex
 LaTeX2e <2026-06-01>
 L3 programming layer <2026-05-26>
 (C:\Users\gianm\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -53,19 +53,14 @@ Package babel Info: Configuration files are deprecated, as
 *
 (C:\Users\gianm\AppData\Local\Programs\MiKTeX\tex/latex/arabi\bblopts.cfg
 File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of babel
-) (C:\Users\gianm\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/invalid\babel-brazil.tex)
-
-Package babel Warning: Name 'brazil' is deprecated.
-(babel)                Use 'brazilian' instead.
-(babel)                Reported on input line 4356.
-
-Package babel Info: Importing font and identification data for brazil
-(babel)             from babel-pt-BR.ini. Reported on input line 4356.
-(C:\Users\gianm\AppData\Local\Programs\MiKTeX\tex/latex/babel-portuges\brazilian.ldf
-Language: portuges 2026/01/24 v1.2u Portuguese support from the babel system
-Package babel Info: Hyphen rules for 'brazil' set to \l@portuguese
-(babel)             (\language56). Reported on input line 100.
-Package babel Info: Making " an active character on input line 132.
+)
+Package babel Info: You haven't specified a language as a class or package
+(babel)             option. I'll load 'nil'. Reported on input line 4287.
+Package babel Info: Importing font and identification data for nil
+(babel)             from babel-und-x-nil.ini. Reported on input line 4356.
+ (C:\Users\gianm\AppData\Local\Programs\MiKTeX\tex/generic/babel\nil.ldf
+Language: nil 2026/05/20 v26.8 Nil language
+\l@nil=\language80
 )) (C:\Users\gianm\AppData\Local\Programs\MiKTeX\tex/latex/lm\lmodern.sty
 Package: lmodern 2015/05/01 v1.6.1 Latin Modern Fonts
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
@@ -352,114 +347,109 @@ Package ntheorem Info: Option `thmmarks' loaded on input line 1175.
 \c@currNonectr=\count311
 \mysavskip=\skip63
 )
-\c@currdefinicaoctr=\count312
-\c@enddefinicaoctr=\count313
-\c@definicao=\count314
-\c@currnotactr=\count315
-\c@endnotactr=\count316
-\c@currproposicaoctr=\count317
-\c@endproposicaoctr=\count318
-\c@currproplivrectr=\count319
-\c@endproplivrectr=\count320
-\c@currdemonstracaoctr=\count321
-\c@enddemonstracaoctr=\count322
-LaTeX Font Info:    Trying to load font information for T1+ptm on input line 52.
+\c@currdefinitionctr=\count312
+\c@enddefinitionctr=\count313
+\c@definition=\count314
+\c@currnotectr=\count315
+\c@endnotectr=\count316
+\c@currpropositionctr=\count317
+\c@endpropositionctr=\count318
+\c@currfreepropctr=\count319
+\c@endfreepropctr=\count320
+\c@currproofctr=\count321
+\c@endproofctr=\count322
+LaTeX Font Info:    Trying to load font information for T1+ptm on input line 56.
  (C:\Users\gianm\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 ) (C:\Users\gianm\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2026-02-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count323
-) (automatos.aux
-Package babel Info: 'brazil' activates 'portuges' shorthands.
-(babel)             Reported on input line 8.
-)
-\openout1 = `automatos.aux'.
+) (endomorphisms.aux)
+\openout1 = `endomorphisms.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-Package hyperref Info: Link coloring OFF on input line 52.
- (automatos.out) (automatos.out)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+Package hyperref Info: Link coloring OFF on input line 56.
+ (endomorphisms.out) (endomorphisms.out)
 \@outlinefile=\write3
-\openout3 = `automatos.out'.
+\openout3 = `endomorphisms.out'.
 
-LaTeX Font Info:    Trying to load font information for OT1+ztmcm on input line 67.
+LaTeX Font Info:    Trying to load font information for OT1+ztmcm on input line 65.
  (C:\Users\gianm\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OML+ztmcm on input line 67.
+LaTeX Font Info:    Trying to load font information for OML+ztmcm on input line 65.
  (C:\Users\gianm\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OMS+ztmcm on input line 67.
+LaTeX Font Info:    Trying to load font information for OMS+ztmcm on input line 65.
  (C:\Users\gianm\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OMX+ztmcm on input line 67.
+LaTeX Font Info:    Trying to load font information for OMX+ztmcm on input line 65.
  (C:\Users\gianm\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 67.
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 65.
  (C:\Users\gianm\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 67.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 65.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 67.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 65.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 67.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 65.
  [1
 
-{C:/Users/gianm/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/gianm/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}] [2]
+{C:/Users/gianm/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/gianm/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}]
 
-Package mathptmx Warning: There are no bold math fonts on input line 131.
+Package mathptmx Warning: There are no bold math fonts on input line 111.
 
-Package hyperref Info: bookmark level for unknown nota defaults to 0 on input line 131.
-Package hyperref Info: bookmark level for unknown definicao defaults to 0 on input line 135.
-Package hyperref Info: bookmark level for unknown proplivre defaults to 0 on input line 158.
-[3]
-Package hyperref Info: bookmark level for unknown proposicao defaults to 0 on input line 203.
-Package hyperref Info: bookmark level for unknown demonstracao defaults to 0 on input line 212.
- [4]
+Package hyperref Info: bookmark level for unknown definition defaults to 0 on input line 111.
+[2]
+Package hyperref Info: bookmark level for unknown note defaults to 0 on input line 120.
+Package hyperref Info: bookmark level for unknown proposition defaults to 0 on input line 143.
+Package hyperref Info: bookmark level for unknown proof defaults to 0 on input line 147.
 \tf@thm=\write4
-\openout4 = `automatos.thm'.
+\openout4 = `endomorphisms.thm'.
 
- [5] (automatos.aux)
+ [3] (endomorphisms.aux)
  ***********
 LaTeX2e <2026-06-01>
 L3 programming layer <2026-05-26>
  ***********
-Package rerunfilecheck Info: File `automatos.out' has not changed.
-(rerunfilecheck)             Checksum: EE13F5915FE636A301B5E629E54AAD3E;507.
+Package rerunfilecheck Info: File `endomorphisms.out' has not changed.
+(rerunfilecheck)             Checksum: 2F8C02FC023B8EF180B7107791EBBC31;397.
  ) 
 Here is how much of TeX's memory you used:
- 10912 strings out of 467509
- 171135 string characters out of 5408780
- 598569 words of memory out of 5000000
- 39951 multiletter control sequences out of 15000+600000
- 664236 words of font info for 96 fonts, out of 8000000 for 9000
+ 10831 strings out of 467509
+ 169287 string characters out of 5408780
+ 595420 words of memory out of 5000000
+ 39905 multiletter control sequences out of 15000+600000
+ 667354 words of font info for 104 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 74i,8n,79p,935b,618s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/gianm/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/gianm/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/gianm/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/gianm/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/gianm/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/gianm/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/gianm/AppData/Local/Programs/MiKTeX/fonts/type1/public/rsfs/rsfs10.pfb><C:/Users/gianm/AppData/Local/Programs/MiKTeX/fonts/type1/urw/symbol/usyr.pfb><C:/Users/gianm/AppData/Local/Programs/MiKTeX/fonts/type1/urw/symbol/usyr.pfb><C:/Users/gianm/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/gianm/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/gianm/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on automatos.pdf (5 pages, 132912 bytes).
+ 74i,7n,79p,938b,743s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/gianm/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/gianm/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/gianm/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/gianm/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/gianm/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/gianm/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/gianm/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/gianm/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
+Output written on endomorphisms.pdf (3 pages, 102651 bytes).
 PDF statistics:
- 165 PDF objects out of 1000 (max. 8388607)
- 58 named destinations out of 1000 (max. 500000)
+ 102 PDF objects out of 1000 (max. 8388607)
+ 28 named destinations out of 1000 (max. 500000)
  33 words of extra memory for PDF output out of 10000 (max. 10000000)
 
