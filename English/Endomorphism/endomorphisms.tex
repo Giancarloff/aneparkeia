@@ -40,12 +40,13 @@
 \newtheorem{proof}[definition]{Proof}
 
 % Generic Macros (english)
-\newcommand{\naturals}{\mathbb{N}}
-\newcommand{\integers}{\mathbb{Z}}
-\newcommand{\rationals}{\mathbb{Q}}
-\newcommand{\reals}{\mathbb{R}}
-\newcommand{\complexs}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
 \newcommand{\set}[1]{\{#1\}}
+\newcommand{\inv}[1]{#1^{-1}}
 
 \title{Endomorphisms}
 \author{Gian Carlo}
@@ -55,97 +56,119 @@
 \maketitle
 
 % Specific macros
-\newcommand{\ot}{\leftarrow}
-\newcommand{\inv}[1]{#1^{-1}}
 
 \section{Introduction}
 
-Treating the algebraic structure of an endomorphism set on some finite set $S$ as a monoid seems rather boring to me. As with the portuguese texts, this will make mixed use of the language persons.
+This should (eventually) read like a taxonomy of the elements of the endomorphism of some set. If cardinality arguments appear and look weird, assume the underlying set is finite.
 
 \section{Investigation}
 
-Let $S$ be a finite set. The endomorphism set on $S$ is the set of all functions $S \to S$. I will denote this endomorphism set by $E_S$. 
+So the first thing I want to lock is notation. For a given set $S$, the set of functions $S \to S$ will be written as $E_S$. It is not pretty but it is easy to type. If we ever need to think about what a given $f \in E_S$ does to some $s \in S$, we shall not write it as $f(s)$ but instead we will compose the constant function $f_s(x) = s$ with $f$. Immediately we will abuse notation and say that $s$ denotes both the element of $S$ and the constant function.
 
-Among the elements of $E_S$ are the bijective functions. Those form a known group named the permutation group of $S$. I will denote this group by $P_S$. Let $n = |S|$. There are $n!$ such bijections. That leaves us $n^n - n!$ elements to structurize.
-
-Another set of elements of $E_S$ are functions of the form $f(x) = s_0$ for a given $s_0$ in $S$. Since there are $n$ options for such $s_0$, there are $n$ functions of this type. Let us define an operation $\cdot$ on $E_S$ given by \begin{equation}
-    f \cdot g = g \circ f.
+Another thing we will do is write function products as follows \begin{equation}
+    fg = g \circ f.
 \end{equation}
-This is so we can read products left-to-right like usual. For the elements of the form $f(x) = s_0$, lets call them $R_S$. For every $r \in R_S$ and any product $P = f_1f_2...f_p$ of $f_i \in E_s$ we have \begin{equation}
-    Pr = r.
+This of course generalizes to longer products like $fghgfhfhg$, which are associative since composition is associative. Then, instead of evaluating functions (if we need to work with element traces/paths) we will merely write \begin{equation}
+    s_0f
 \end{equation}
-That is because $r(x) = s_0$ for whatever input and as such it does not matter what is done to the input beforehand, so long as it remains in $S$. In particular, every $r \in R_S$, when placed at the end of a product, behaves like $0$ does for usual multiplication. Since the end of the product is at the rightmost symbol, we name these elements the righmost zeroes, or just $R_S$.
+where $s_0$ is the constant function $s_0(x) = s_0 \in S$ and $f$ is some element of $E_S$. We will name set elements after the set, so if $S$ is a set the symbols $s_0, s_1, ..., s_n, ...$ are both constant functions and elements of $S$. For a set $C$, we reserve $c_0, ...$ and so on.
 
-We will denote the identity function by $e(x) = x$ or just $e$. So $eP = Pe = e$ for any product $P$ as before. Since each $r \in R_S$ has only one image, we will instead denote it by $r_0 \in S$.
-
-Take $r \in R_S$. If we consider the equation \begin{equation}
-    rx = e
-\end{equation}
-we could apply some input $s$ to both sides and get \begin{equation}
-    x(r(s)) = e(s)
-\end{equation}
-and since $r(s) = r_0$, we get $x(r_0) = e(s) = s$. Thus $x(r_0)$ has to be any element of $S$. This is a relation on $S$. We will look at a specific type of relation. 
-
-Let $t \subseteq S \times C$ be a relation on $S$. We will call $t$ a \textbf{branching} iff \begin{enumerate}
-    \item For all $c \in C$ there is $s \in S$ such that $(s, c) \in t$; And
-    \item if $(s, c) \in t$ and $(z, c) \in t$ then $s = z$.
-\end{enumerate}
-
-We shall denote $(s, c) \in t$ by $c(t) = s$. This looks well defined, though I will not rigorously check. With branchings, we can complete $R_S$. In particular, the branching given by $r_0(t) = s, \forall s \in S$ tells us that $rt = e$. So now every $r \in R_S$ has an inverse branching, if we assume composition is done as expected. 
-
-It seems we can even complete $E_S$ as a group with branchings. Let us see. We need no inverses for $e$ and elements of $P_S$. So let $f \in E_S$ be a function not equal to these. Have any $s \in S$ and consider \begin{equation}
-    f^{-1}(s) = \set {x \in S : f(x) = s}.
-\end{equation}
-Clearly the branching given by \begin{equation}
-    s(t_f) = x, \forall x \in f^{-1}(s)
-\end{equation}
-gives us an inverse to $f$. For confirmation, if $f(x) = y$, then $y(t_f) = x$ and as such $ft(x) = (f(x))(t_f) = y(t_f) = x = e(x)$.
-
-Another thing we can do is consider near-inverses. Say we take $f \in E_S$ such that $f(x) = s_0 \in S$. We can not invert this with another function. But we can invert it for every $x \in S$. Let $z \in S$. The inverse of $f(z) = s_0$ is given by $g(s_0) = z$. We can always find such a function $g \in S$. What we lose is uniqueness of inverse. For simplicity, lets restrict this even more by forcing $g$ to behave as $e$ everywhere else but $s_0$.
+Finally, when speaking about cardinalities, it probably safer to assume finite sets, so we have the common arithmetic available. I know wonder what would take for set theory to allow for arbitrary cardinalities. What is a set of size $2.5$?
 
 \section{Synthesis}
 
-\begin{definition}[Branching]
-    Let $A$ and $B$ be two non empty sets. A relation $R \subseteq A \times B$ obeying: \begin{enumerate}
-        \item For all $b \in B$ there is an $a \in A$ such that $(a, b) \in R$; and
-        \item For all $a, e \in A$ and $b \in B$, if $(a, b) \in R$ and $(e, b) \in R$ then $a = e$;
-    \end{enumerate}
-    will be called a \textbf{branching} of $A$ to $B$.
+\begin{definition}
+    Let $S$ be a set. The set of functions $f : S \to S$ will be called the \textbf{endomorphism} set, or the \textbf{function set} and will be written as $E_S$.
+\end{definition}
+
+\begin{definition}[Function Product] \label{def:function_product}
+    Let $S$ be a set and $E_S$ it's function set. The product of two functions $f, g \in E_S$ is defined as their composition: \begin{equation}
+        fg = g \circ f.
+    \end{equation}
 \end{definition}
 
 \begin{note}
-    We will write $(a, b) \in R$ as $b | R = a$. This can be read as $b$ comes from $a$ by $R$. The second condition for branching tells us this notation is well defined.
-
-    We will also write a branching $R \subseteq A \times B$ as $R : B \ot A$. One way to read this is: by $R$, what is in $B$ comes from $A$. A better way is $A$ branches from $B$, which I like more because it follows the arrow.
+    The previous definition is done in such a way as that reading left-to-right also tells us the order of application of the functions.
 \end{note}
 
-\begin{definition}[Composition of Branchings]
-    Let $A$, $B$ and $C$ be three non empty sets. If there are branchings $R, S$ such that $R : B \ot A$ and $S : C \ot B$, then the \textbf{composition} of $R$ and $S$, denoted by $RS$, is given by the equation \begin{equation}
-        x | RS = (x | S) | R
-    \end{equation}
-    for all $x \in C$.
-\end{definition}
-
-\begin{definition}
-    Let $E_S$ be the set of functions of $S \to S$, and let $f \in E_S$ be a constant function $f(x) = s_0 \in S$ for all $x \in S$. A function $r$ is a \textbf{right near inverse} of $f$ if there exists $z \in S$ such that \begin{equation}
-        \begin{cases}
-            r(x) = s_0, & x = z \\
-            r(x) = x, & x \neq z
-        \end{cases}
-    \end{equation}
-    for all $x \in S$.
-\end{definition}
-
 \begin{proposition}
-    Let $S$ be a non-empty set of known cardinality $C$, and $E_S$ the set of function of $S \to S$. If $f \in E_S$ then there exists exactly $C$ right near inverses of $f$.
+    The set of endomorphisms of some set $S$ with the product of \ref{def:function_product} forms a monoid.
 \end{proposition}
 
 \begin{proof}
-    TBD.
+    Because the product is defined from the composition, it inherits the associativity and the neutral element $i(x) = x$, the identity function.
+
+    Nevertheless, we show some calculations \footnote{These are calculations I actually understand, so I might as well show them.}. Let $f, g, h \in E_S$ and consider $f(gh)$. By definition, \begin{equation}
+        f(gh) = (gh) \circ f
+    \end{equation}
+    which yields \begin{equation}
+        (gh) \circ f = (h \circ g) \circ f
+    \end{equation}
+    which we associate freely, since it's in composition form, to \begin{equation}
+        (h \circ g) \circ f = h \circ (g \circ f),
+    \end{equation}
+    giving us \begin{equation}
+        h \circ (g \circ f) = h \circ (fg) = (fg)h
+    \end{equation}
+    as expected.
+
+    Consider the function $i(x) = x$ in $E_S$. By: definition, composition property, composition property, and definition, we have $fi = i \circ f = f = f \circ i = if$.
 \end{proof}
 
-\section{Conclusions}
+\begin{note}
+    We will not justify every equality like in the last proposition. Do not worry.
 
-How does one conclude something that is ongoing if not by ending it abrupte
+    The next proposition serves to establish our notation.
+\end{note}
+
+\begin{proposition}[No More Parentheses]
+    Let $S$ be a set, $E_S$ it's function set and $\bar s(x) = s \in S$ be a constant function. For every function $f \in E_S$ we have \begin{equation}
+        \bar s f = f(s).
+    \end{equation}
+\end{proposition}
+
+\begin{proof}
+    We just apply our definition. Since $\bar s(x) = s$, when we compute $\bar s f$ we obtain \begin{equation}
+        \bar s f = f \circ \bar s
+    \end{equation}
+    which applied to some $x \in S$ yields \begin{equation}
+        (f \circ \bar s) (x) = f(\bar s (x)) = f(s)
+    \end{equation}
+    as expected.
+\end{proof}
+
+\begin{note}
+    The previous argument exists for the sole purpose of freeing us from having to write $f(s)$ for $s \in S$ should we ever need to think about where an element goes. We will also abuse the notation and consider $s \in S$ both as an element and as it's constant function $s(x) = s$.
+\end{note}
+
+\begin{proposition}[Rightmost Zeroes]
+    For a given set $S$ and it's endomorphisms, any constant function $s \in E_S$ is such that $fs = s$ for all $f \in E_S$.
+\end{proposition}
+
+\begin{proof}
+    If we expand the product into the composition \begin{equation}
+        fs = s \circ f
+    \end{equation}
+    and remember $s$ is a constant function, then \begin{equation}
+        s \circ f = s 
+    \end{equation}
+    and then $fs = s$ as expected.
+\end{proof}
+
+\begin{note}
+    Two things we ought to point out now: \begin{enumerate}
+        \item We will write the identity function $f(x) = x$ as $e \in E_S$.
+        \item The last two propositions (and others to come) remain true if instead of a single function we compose with a finite product of functions \begin{equation}
+            P = \prod_{i = 1}^{n \in \N} f_i.
+        \end{equation}
+        In other words, $sP$ is still equal to evaluating $P(s)$ and $Ps = s$.
+    \end{enumerate}
+\end{note}
+
+\section{Not Conclusions}
+
+Next step is actually doing some taxonomy on $E_S$. We have bijections, constant functions. I know the literature calls the elements of the function set transformations of the set but I will instead call them $k$-classifications based on the size of their image, because I will actually use the $k$ in an equation.
+
+I am writing this alone. Why do I use plural language persons? We don't know.
 
 \end{document}

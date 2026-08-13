@@ -38,6 +38,7 @@
 % Macros Gerais
 \newcommand{\naturais}{\mathbb{N}}
 \newcommand{\set}[1]{\{#1\}}
+\newcommand{\sseq}{\subseteq}
 
 % Macros Específicos
 \newcommand{\ainf}{A^*}
@@ -126,6 +127,10 @@ Uma questão inicial bem simples de se fazer seria: Se sabemos que variando $n \
 \end{equation}
 onde $xL(\phi, n, F) = \set { xp : p \in L(\phi, n, F)}$, o que isso determina de $\phi$ e $F$? Com este exemplo pequeno, seríamos capazes de reconstruir parte de $\phi$ e $F$ relativos à equação por inspeção e estudo de casos, mas e num caso geral?
 
+Claramente a definição de autômato induz uma ação do monóide sobre o conjunto de funções. Para uma palavra $w = a_0a_1...a_n$ em $\ainf$, obtemos a ação de $w$ em $x \in \funcset{[s]}$ por \begin{equation}
+    wx = \phi(x | a_0a_1...a_n)
+\end{equation}
+
 \section{Síntese}
 
 \begin{nota} \label{nota:notacao_intervalo_discreto}
@@ -191,11 +196,12 @@ onde $xL(\phi, n, F) = \set { xp : p \in L(\phi, n, F)}$, o que isso determina d
     extendemos nossa definição de $\phi(x | y)$ fazendo \begin{equation}
         \phi(i | p) = \phi(i | p_1p_2...p_k).
     \end{equation}
+    No caso $p = \varepsilon$, convencionaremos que $\phi(i | \varepsilon) = i$.
 \end{nota}
 
 \begin{nota}
-    Denotaremos por $\ker \phi$ o conjunto \begin{equation}
-        \ker \phi = \set{a \in A : \phi(a) = id},
+    Denotaremos por $Z(\phi)$ o conjunto \begin{equation}
+        Z(\phi) = \set{a \in A : \phi(a) = id},
     \end{equation}
     por $A \leq B$ o fato de que $A$ é um subgrupo de $B$, e por $P_s$ o grupo de permutações (funções bijetoras) de $[s] \to [s]$. Imediatamente temos que $P_s \subseteq \funcset{[s]}$.
 \end{nota}
@@ -203,7 +209,7 @@ onde $xL(\phi, n, F) = \set { xp : p \in L(\phi, n, F)}$, o que isso determina d
 \begin{proposicao}[Autômato Subgrupo] \label{prop:automato_subgrupo}
     Seja $\automataAs{\phi}$ um autômato e $P_s$ o grupo de permutação sobre $[s]$. Se $\phi(A) \leq P_s$, então valem: \begin{enumerate}
         \item Para todo $n \in [s]$, existem $a, b \in A$ tais que $\phi(n | ab) = n$;
-        \item Para todo $a \in \ker \phi$ e $n \in [s]$, temos $\phi(n | a) = n$; e
+        \item Para todo $a \in Z(\phi)$ e $n \in [s]$, temos $\phi(n | a) = n$; e
         \item Para todo $n \in [s]$ e $a, b \in A$, existe $c \in A$ tal que $\phi(n | ab) = \phi(n | c)$.
     \end{enumerate}
 \end{proposicao}
@@ -213,7 +219,7 @@ onde $xL(\phi, n, F) = \set { xp : p \in L(\phi, n, F)}$, o que isso determina d
         \phi(n | ab) = (\phi(b) \circ \phi(a))(n) = (\sigma_a^{-1} \circ \sigma_a)(n) = n.
     \end{equation}
     
-    Para (2), seja $a \in \ker \phi$ e $n \in [s]$. Então $\phi(a) = id$, e assim \begin{equation}
+    Para (2), seja $a \in Z(\phi)$ e $n \in [s]$. Então $\phi(a) = id$, e assim \begin{equation}
         \phi(n | a) = \phi(a)(n) = id(n) = n.
     \end{equation}
     
@@ -224,46 +230,27 @@ onde $xL(\phi, n, F) = \set { xp : p \in L(\phi, n, F)}$, o que isso determina d
 
 \begin{nota}
     Introduziremos terminologia para as propriedades da proposição anterior, respectivamente: \begin{enumerate}
-        \item Diremos que o autômato em questão sempre tem \textbf{transição inversível};
-        \item Todo $a \in \ker \phi$ é chamado de \textbf{barulho}; 
+        \item Diremos que o autômato em questão sempre tem \textbf{transição reversível};
+        \item Todo $a \in Z(\phi)$ é chamado de \textbf{barulho}; 
         \item Diremos que o autômato é \textbf{transitivo}.
     \end{enumerate}
 \end{nota}
 
 \begin{definicao}[Linguagem] \label{def:linguagem}
-    Seja $\phi$ um autômato, $i \in [s]$ e $\emptyset \neq F \subseteq [s]$. A \textbf{linguagem} de $(\phi, i, F)$, que denotaremos por $L(\phi, i, F)$, é o conjunto \begin{equation}
+    Seja $\automataAs{\phi}$ um autômato, $i \in [s]$ e $\emptyset \neq F \subseteq [s]$. A \textbf{linguagem} de $(\phi, i, F)$, que denotaremos por $L(\phi, i, F)$, é o conjunto \begin{equation}
         L(\phi, i, F) = \set{p \in \ainf : \phi(i \mid p) \in F}.
     \end{equation}
 \end{definicao}
 
 \begin{nota}
-    Seja $\automataAs{\phi}$ um autômato e $L(\phi, n, F)$ uma linguagem. Para toda $p \in \ainf$, denotaremos por $pL(\phi, n, F)$ o conjunto \begin{equation}
+    Para toda $p \in \ainf$, denotaremos por $pL(\phi, n, F)$ o conjunto \begin{equation}
         pL(\phi, n, F) = \set { p + q : q \in L(\phi, n, F)},
     \end{equation}
     onde $+$ é a concatenação no monóide livre sobre $A$. Em particular, se $p = a \in A$, concatenamos apenas uma letra, prefixando toda palavra da linguagem $L(\phi, n, F)$ por $a$.
 \end{nota}
 
-% \begin{proposicao}
-%     Seja $\automataAs{\phi}$ um autômato e $F = {k}$. Se existe $a \in A$ tal que, para todo $i, j \in [s]$ com $i \neq j$ tivermos \begin{equation}
-%         \emptyset \neq L(\phi, j, F) = aL(\phi, i, F) \neq \emptyset,
-%     \end{equation}
-%     então \begin{equation}
-%         \phi(i | a) = j.
-%     \end{equation}
-% \end{proposicao}
+\section{Não são Conclusões}
 
-% \begin{demonstracao}
-%     Tome $p \in L(\phi, j, F)$. Temos que \begin{equation}
-%         \phi(j | p) = k
-%     \end{equation}
-%     e que $ap \in L(\phi, i, F)$. Por definição, \begin{equation}
-%         \phi(i | ap) = \phi(\phi(i | a) | p) = k.
-%     \end{equation}
-%     Disso, $\phi(j | p) = \phi(\phi(i | a) | p)$ e portanto $\phi(i | a) = j$.
-% \end{demonstracao}
-
-\section{Comentários, Notas, e Conclusões}
-
-A ideia no momento é ir alternando entre as investigações e a síntese. Não sei se irei modificar a parte da investigação para mencionar o que é explicitado na síntese, ou se deixo como foi escrito para fins de registro histórico. Claramente o estudo ainda está extremamente superficial.
+A ideia no momento é ir alternando entre as investigações e a síntese. Não sei se irei modificar a parte da investigação para mencionar o que é explicitado na síntese, ou se deixo como foi escrito para fins de registro histórico.
 
 \end{document}
