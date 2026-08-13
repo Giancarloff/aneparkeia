@@ -103,6 +103,19 @@ gives us an inverse to $f$. For confirmation, if $f(x) = y$, then $y(t_f) = x$ a
 
 Another thing we can do is consider near-inverses. Say we take $f \in E_S$ such that $f(x) = s_0 \in S$. We can not invert this with another function. But we can invert it for every $x \in S$. Let $z \in S$. The inverse of $f(z) = s_0$ is given by $g(s_0) = z$. We can always find such a function $g \in S$. What we lose is uniqueness of inverse. For simplicity, lets restrict this even more by forcing $g$ to behave as $e$ everywhere else but $s_0$.
 
+\subsection{A step back}
+
+It seems more prudent trying to understand the endomorphism set in its usual form rather then trying some form of group completion. I like the name endomorphism but I will allow myself to also use the name "function set" to describe it.
+
+So we know constant functions of the form $f(x) = a$ are right-zeros in the product, in the sense they determine the whole of the product as themselves by simply being a factor in it at the very end.
+
+Well, there are as many right-zeroes as there are elements of the set, because for each $c \in S$ we can separate the function $f(x) = s$ and count it as one. The total number of functions that exist in a set $S$ to itself is known to be, for $n = |S|$, $n^n$. It is also known that there are $n!$ bijections and $n$ right-zeroes. So we got a nice little sum to break down \begin{equation*}
+    n^n = n! + n + R
+\end{equation*}
+where $R$ is hiding the other amounts of types of function.
+
+We could elaborate on all the summands hidden in $R$ through combinatorics. For that, let us say that a function is an $k$-classification if its image has cardinality $k$ (I think of it as the function classifying the set into $k$ classes). Let us restrict ourselves to finite sets for now. We know that there are $n!$ $n$-classifications and $n$ $1$-classifications. 
+
 \section{Synthesis}
 
 \begin{definition}[Branching]
